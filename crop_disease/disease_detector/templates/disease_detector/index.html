@@ -1,0 +1,128 @@
+{% extends 'disease_detector/base.html' %}
+{% load static %}
+
+{% block title %}Home - AI Crop Disease Detector-Tomato Plant Disease Detection{% endblock %}
+
+{% block content %}
+<div class="hero">
+    <div class="container">
+        <h1 class="animate-fade-in">
+            <i class="fas fa-microscope"></i> Instant Tomato Plant Disease Diagnosis
+        </h1>
+        <p class="lead animate-fade-in">
+            Upload a photo of your tomato leaf and get AI-powered diagnosis with 93% accuracy
+        </p>
+    </div>
+</div>
+
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-lg-8">
+            <div class="card shadow-lg animate-fade-in">
+                <div class="card-body p-4 p-md-5">
+                    <h3 class="text-center mb-4">
+                        <i class="fas fa-cloud-upload-alt text-success"></i> Upload Leaf Image
+                    </h3>
+                    
+                    <form method="post" enctype="multipart/form-data" action="{% url 'predict' %}" id="uploadForm">
+                        {% csrf_token %}
+                        
+                        <div class="upload-area" id="uploadArea">
+                            <i class="fas fa-leaf upload-icon"></i>
+                            <p class="mb-2">Drag & drop or click to upload</p>
+                            <small class="text-muted">Supported: JPG, PNG (Max 10MB)</small>
+                            <input type="file" name="leaf_image" id="fileInput" class="d-none" accept="image/*" required>
+                        </div>
+                        
+                        <div id="previewContainer" class="mt-4 text-center" style="display: none;">
+                            <img id="previewImage" class="img-fluid rounded" style="max-height: 250px;" alt="Preview">
+                            <p id="fileName" class="mt-2 text-muted"></p>
+                            <button type="button" class="btn btn-sm btn-outline-danger" id="removeImage">
+                                <i class="fas fa-trash"></i> Remove
+                            </button>
+                        </div>
+                        
+                        <div class="mt-4">
+                            <label class="form-label fw-bold">
+                                <i class="fas fa-language"></i> Select Language
+                            </label>
+                            <select class="form-select" name="language" required>
+                                <option value="en">English</option>
+                                <option value="hi">हिन्दी (Hindi)</option>
+                                <option value="ur">اردو (Urdu)</option>
+                            </select>
+                        </div>
+                        
+                        <div class="text-center mt-4">
+                            <button type="submit" class="btn btn-primary btn-lg" id="submitBtn">
+                                <i class="fas fa-stethoscope"></i> Diagnose Disease
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    const uploadArea = document.getElementById('uploadArea');
+    const fileInput = document.getElementById('fileInput');
+    const previewContainer = document.getElementById('previewContainer');
+    const previewImage = document.getElementById('previewImage');
+    const fileName = document.getElementById('fileName');
+    const removeImage = document.getElementById('removeImage');
+    const submitBtn = document.getElementById('submitBtn');
+    
+    uploadArea.addEventListener('click', () => fileInput.click());
+    
+    uploadArea.addEventListener('dragover', (e) => {
+        e.preventDefault();
+        uploadArea.classList.add('drag-over');
+    });
+    
+    uploadArea.addEventListener('dragleave', () => {
+        uploadArea.classList.remove('drag-over');
+    });
+    
+    uploadArea.addEventListener('drop', (e) => {
+        e.preventDefault();
+        uploadArea.classList.remove('drag-over');
+        const file = e.dataTransfer.files[0];
+        if (file && file.type.startsWith('image/')) {
+            fileInput.files = e.dataTransfer.files;
+            handleFileSelect(file);
+        }
+    });
+    
+    fileInput.addEventListener('change', (e) => {
+        if (e.target.files[0]) {
+            handleFileSelect(e.target.files[0]);
+        }
+    });
+    
+    function handleFileSelect(file) {
+        const reader = new FileReader();
+        reader.onload = (e) => {
+            previewImage.src = e.target.result;
+            fileName.textContent = file.name;
+            uploadArea.style.display = 'none';
+            previewContainer.style.display = 'block';
+            submitBtn.disabled = false;
+        };
+        reader.readAsDataURL(file);
+    }
+    
+    removeImage.addEventListener('click', () => {
+        fileInput.value = '';
+        uploadArea.style.display = 'block';
+        previewContainer.style.display = 'none';
+        submitBtn.disabled = true;
+    });
+    
+    document.getElementById('uploadForm').addEventListener('submit', function() {
+        submitBtn.disabled = true;
+        submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Analyzing...';
+    });
+</script>
+{% endblock %}

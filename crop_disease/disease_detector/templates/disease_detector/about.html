@@ -1,0 +1,111 @@
+{% extends 'disease_detector/base.html' %}
+{% load static %}
+
+{% block title %}About - AI Crop Disease Detector-Tomato Plant Disease Detection{% endblock %}
+
+{% block content %}
+<div class="container py-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-10">
+            <div class="card shadow-lg animate-fade-in">
+                <div class="card-header bg-success text-white text-center">
+                    <h3 class="mb-0"><i class="fas fa-info-circle"></i> About AI Crop Disease Detector</h3>
+                </div>
+                <div class="card-body p-4">
+                    
+                    <div class="text-center mb-4">
+                        <i class="fas fa-microchip fa-4x text-success mb-3"></i>
+                        <h4>AI-Powered Tomato Plant Disease Detection</h4>
+                        <p class="text-muted">Empowering farmers with instant, accurate diagnoses</p>
+                    </div>
+                    
+                    <hr>
+                    
+                    <h5><i class="fas fa-chart-line text-success"></i> Model Performance</h5>
+                    <div class="row mb-4">
+                        <div class="col-md-4">
+                            <div class="text-center p-3 bg-light rounded">
+                                <div class="display-4 text-success">93.1%</div>
+                                <div>Test Accuracy</div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="text-center p-3 bg-light rounded">
+                                <div class="display-4 text-success">94.8%</div>
+                                <div>Validation Accuracy</div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="text-center p-3 bg-light rounded">
+                                <div class="display-4 text-success">84.8%</div>
+                                <div>High Confidence Rate</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <h5><i class="fas fa-biohazard text-success"></i> Diseases Detected</h5>
+                    <div class="row mb-4">
+                        <div class="col-md-6">
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item"><i class="fas fa-check-circle text-success"></i> Healthy Plants</li>
+                                <li class="list-group-item"><i class="fas fa-leaf text-warning"></i> Early Blight</li>
+                                <li class="list-group-item"><i class="fas fa-skull-crossbones text-danger"></i> Late Blight</li>
+                                <li class="list-group-item"><i class="fas fa-smog text-info"></i> Leaf Mold</li>
+                            </ul>
+                        </div>
+                        <div class="col-md-6">
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item"><i class="fas fa-bug text-danger"></i> Bacterial Spot</li>
+                                <li class="list-group-item"><i class="fas fa-virus text-purple"></i> Yellow Leaf Curl Virus</li>
+                                <li class="list-group-item"><i class="fas fa-dna text-primary"></i> Mosaic Virus</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <h5><i class="fas fa-cogs text-success"></i> How It Works</h5>
+                    <div class="row text-center mb-4">
+                        <div class="col-md-4">
+                            <div class="p-3">
+                                <i class="fas fa-cloud-upload-alt fa-3x text-success"></i>
+                                <p class="mt-2"><strong>1. Upload</strong><br>Take a clear photo of the leaf</p>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="p-3">
+                                <i class="fas fa-brain fa-3x text-success"></i>
+                                <p class="mt-2"><strong>2. Analyze</strong><br>AI processes the image</p>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="p-3">
+                                <i class="fas fa-stethoscope fa-3x text-success"></i>
+                                <p class="mt-2"><strong>3. Diagnose</strong><br>Get results & treatment</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <h5><i class="fas fa-microscope text-success"></i> Technology Stack</h5>
+                    <div class="mb-4">
+                        <span class="badge bg-primary">PyTorch</span>
+                        <span class="badge bg-success">EfficientNet-B3</span>
+                        <span class="badge bg-info">Django</span>
+                        <span class="badge bg-warning">Lab images</span>
+                        <span class="badge bg-warning">Field images</span>
+                        <span class="badge bg-danger">AWS Cloud</span>
+                    </div>
+                    
+                    <div class="alert alert-info mt-4">
+                        <i class="fas fa-graduation-cap"></i>
+                        <strong>Research & Development:</strong> This model was trained on 10,500+ Lab images and was Fine-tuned on 2,240+ Field images across 7 disease classes, achieving 93.1% test accuracy on real-world conditions.
+                    </div>
+                    
+                    <div class="alert alert-warning mt-3">
+                        <i class="fab fa-aws"></i>
+                        <strong>Deployment:</strong> This model AI Crop Disease Detector is deployed using Amazon AWS Cloud
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
