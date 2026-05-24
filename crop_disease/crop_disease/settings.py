@@ -12,9 +12,14 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-j1vwu__7qo1+xs38o*k6177rus4$%9#h9bza(v3te%e7c_^@!g'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    'cropdiseasedetection.duckdns.org',  # Your DuckDNS domain
+    '54.123.45.67',              # Will update after getting IP
+    'localhost',
+    '127.0.0.1',
+]
 
 
 # Application definition
