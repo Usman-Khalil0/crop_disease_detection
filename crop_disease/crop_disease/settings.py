@@ -15,8 +15,8 @@ SECRET_KEY = 'django-insecure-j1vwu__7qo1+xs38o*k6177rus4$%9#h9bza(v3te%e7c_^@!g
 DEBUG = False
 
 ALLOWED_HOSTS = [
-    'cropdiseasedetection.duckdns.org',  # Your DuckDNS domain
-    '54.123.45.67',              # Will update after getting IP
+    'cropdiseasedetection.duckdns.org',  # DuckDNS domain
+    '13.207.76.207',              #updated after getting IP
     'localhost',
     '127.0.0.1',
 ]
